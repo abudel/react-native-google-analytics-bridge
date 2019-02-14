@@ -204,13 +204,18 @@ public class GoogleAnalyticsBridge extends ReactContextBaseJavaModule {
                     productAction = new ProductAction(ProductAction.ACTION_CLICK);
                     break;
             }
-            HitBuilders.ScreenViewBuilder builder = new HitBuilders.ScreenViewBuilder()
+            /*HitBuilders.ScreenViewBuilder builder = new HitBuilders.ScreenViewBuilder()
                 .addProduct(this.getPurchaseProduct(product))
                 .setProductAction(productAction)
                 .setCategory(eventCategory)
                 .setAction(eventAction);
-
-            tracker.send(builder.build());
+            */
+            HitBuilders.EventBuilder hit = new HitBuilders.EventBuilder()
+                .addProduct(this.getPurchaseProduct(product))
+                .setProductAction(productAction)
+                .setCategory(eventCategory)
+                .setAction(eventAction);
+            tracker.send(hit.build());
         }
     }
 
